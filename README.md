@@ -71,6 +71,7 @@ http://127.0.0.1:8000/jwt/create/
 После будут доступны эндпойнты для анонимов, **авторизованных пользователей, _авторов контента_**
 - http://127.0.0.1:8000/       **GET**-запросы
 - http://127.0.0.1:8000/api/v1/posts/ GET, **POST, _PUT, PATCH, DELETE_**
+- http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/ GET, **POST, _PUT, PATCH, DELETE_**
 - http://127.0.0.1:8000/api/v1/groups/ GET
 - http://127.0.0.1:8000/api/v1/follow/ **GET, POST**
 
