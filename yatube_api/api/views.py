@@ -1,10 +1,10 @@
-from rest_framework import viewsets, permissions, filters
+from rest_framework import filters, mixins, permissions, viewsets
 from rest_framework.pagination import LimitOffsetPagination
 
-from posts.models import Post, Group, Comment, Follow
+from posts.models import Post, Group, Comment
 from .serializers import FollowSerializer, PostSerializer, GroupSerializer
 from .serializers import CommentSerializer
-from .permissions import IsOwnerOrReadOnly, GetAndPost
+from .permissions import IsOwnerOrReadOnly
 
 
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
@@ -24,7 +24,6 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
@@ -37,17 +36,18 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
 
-class FollowViewSet(viewsets.ModelViewSet):
-    queryset = Follow.objects.all()
+class CreateAndGetListViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
+                              viewsets.GenericViewSet):
+    pass
+
+
+class FollowViewSet(CreateAndGetListViewSet):
     serializer_class = FollowSerializer
-    permission_classes = (GetAndPost, permissions.IsAuthenticated)
     filter_backends = [filters.SearchFilter]
     search_fields = ('following__username',)
 
     def get_queryset(self):
-        user = self.request.user
-        new_queryset = Follow.objects.filter(user=user)
-        return new_queryset
+        return self.request.user.follower.all()
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

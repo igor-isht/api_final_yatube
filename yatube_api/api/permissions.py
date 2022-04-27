@@ -9,11 +9,3 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         return obj.author == request.user
-
-
-# Пермишен для подписок
-class GetAndPost(permissions.BasePermission):
-    message = 'Запрещено'
-
-    def has_object_permission(self, request, view, obj):
-        return request.method == ('GET' or 'POST')
