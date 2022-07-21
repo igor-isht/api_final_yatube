@@ -55,6 +55,13 @@ python3 manage.py runserver
 python manage.py runserver
 ```
 
+Документация:
+
+Посмотреть перечень всех эндпоинтов можно после запуска проекта по адресу:
+
+```
+http://localhost:8000/redoc/
+```
 
 ### Примеры запросов:
 
