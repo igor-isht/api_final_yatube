@@ -1,11 +1,12 @@
 ## Описание:
 
 Данный проект представляет API к сервису блогов Yatube
+Авторизация посредством JWT токена
+В зависимости от роли пользователя, доступны GET, POST, PATCH, PUT и DELETE запросы
 
 
 
-
-### Как запустить проект (Windows):
+### Как запустить проект:
 
 Клонировать репозиторий и перейти в него в командной строке:
 
@@ -20,14 +21,17 @@ cd api_final_yatube
 Cоздать и активировать виртуальное окружение:
 
 ```
-python -m venv env
+python3 -m venv env (MacOS, Linux)
+python -m venv env (Windows)
 ```
 
 ```
-source env/Scripts/activate
+source env/bin/activate (MacOS, Linux)
+source env/Scripts/activate (Windows)
 ```
 
 ```
+python3 -m pip install --upgrade pip
 python -m pip install --upgrade pip
 ```
 
@@ -40,12 +44,14 @@ pip install -r requirements.txt
 Выполнить миграции:
 
 ```
+python3 manage.py migrate
 python manage.py migrate
 ```
 
 Запустить проект:
 
 ```
+python3 manage.py runserver
 python manage.py runserver
 ```
 
