@@ -88,3 +88,10 @@ http://127.0.0.1:8000/api/v1/jwt/create/
 - http://127.0.0.1:8000/api/v1/groups/ GET
 - http://127.0.0.1:8000/api/v1/follow/ **GET, POST**
 
+
+
+## Авторы
+
+[@igor-isht](https://github.com/igor-isht) - настройка эндпойнтов, JWT-аутентификация
+
+[@yandex-praktikum](https://github.com/yandex-praktikum) - юнит-тесты
